@@ -32,7 +32,7 @@
     "pre-commit": "^1.2.2",
     "snazzy": "^8.0.0",
     "standard": "^14.0.0",
-    "tap": "^14.6.1",
+    "tap": "^14.8.0",
     "typescript": "^3.6.4"
   },
   "dependencies": {
