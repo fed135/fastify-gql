@@ -45,7 +45,7 @@ function buildCache (opts) {
   return LRU(1024)
 }
 
-module.exports = fp(async function (app, opts) {
+async function fastifyGQLPlugin (app, opts) {
   const lru = buildCache(opts)
   const lruErrors = buildCache(opts)
 
@@ -290,6 +290,15 @@ module.exports = fp(async function (app, opts) {
 
     return execution
   }
-}, {
+}
+
+module.exports = fp(fastifyGQLPlugin, {
   name: 'fastify-gql'
 })
+
+module.exports.express = function expressGQLShim(app, opts) {
+  const plugin = fastifyGQLPlugin(app, opts)
+  return function expressGQLMiddleware(req, res, next) {
+    console.log(plugin);
+  }
+}
